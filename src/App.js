@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment, useState} from 'react';
+import AddCategory from './components/AddCategory';
+import GifGrid from './components/GifGrid';
+import Header from './components/Header';
+
+
+const InitialCategories = ['One Punch']
+
 
 function App() {
+
+  const [categories, setCategories] = useState(InitialCategories);
+
+  /* const handleAdd = ()=> {
+    setCategories([
+      ...categories,
+      'jose'
+    ]);
+  } */
+
+    /* console.log('la lista de categorias es', categories); */
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div className="container-fluid">
+        <Header />
+      </div>
+      <div className="contenedor">
+        <AddCategory 
+      
+        setCategories = {setCategories}/>       
+        <hr/>
+        
+        {/* <button onClick={cambiarCategoria}> Agregar</button> */}
+        <ol>
+          {/* <li key={iter}>
+                {iter}
+            </li>  Va  dentro del map*/}
+          {categories.map( category => (
+            
+            <GifGrid
+              key={category} 
+              category= {category}
+            />
+          ))}
+        </ol>
+      </div>
+        
+    </Fragment>
   );
 }
 
